@@ -7,14 +7,14 @@ import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.stereotype.Repository
 import ru.amai.highload.social.domain.User
 import ru.amai.highload.social.repository.UserRepository
-import ru.amai.highload.social.repository.impl.UserRepositoryImpl.Companion.Column.ID
-import ru.amai.highload.social.repository.impl.UserRepositoryImpl.Companion.Column.LOGIN
-import ru.amai.highload.social.repository.impl.UserRepositoryImpl.Companion.Column.PASSWORD
-import ru.amai.highload.social.repository.impl.UserRepositoryImpl.Companion.Column.ROLES
-import ru.amai.highload.social.repository.impl.UserRepositoryImpl.Companion.Table.USER
+import ru.amai.highload.social.repository.impl.UserJdbcRepository.Companion.Column.ID
+import ru.amai.highload.social.repository.impl.UserJdbcRepository.Companion.Column.LOGIN
+import ru.amai.highload.social.repository.impl.UserJdbcRepository.Companion.Column.PASSWORD
+import ru.amai.highload.social.repository.impl.UserJdbcRepository.Companion.Column.ROLES
+import ru.amai.highload.social.repository.impl.UserJdbcRepository.Companion.Table.USER
 
 @Repository
-class UserRepositoryImpl(
+class UserJdbcRepository(
     private val jdbcOperations: NamedParameterJdbcOperations
 ) : UserRepository {
 

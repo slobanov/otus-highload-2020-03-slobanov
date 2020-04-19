@@ -5,12 +5,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations
 import org.springframework.stereotype.Repository
 import ru.amai.highload.social.domain.Gender
 import ru.amai.highload.social.repository.GenderRepository
-import ru.amai.highload.social.repository.impl.GenderRepositoryImpl.Companion.Column.ID
-import ru.amai.highload.social.repository.impl.GenderRepositoryImpl.Companion.Column.NAME
-import ru.amai.highload.social.repository.impl.GenderRepositoryImpl.Companion.Table.GENDER
+import ru.amai.highload.social.repository.impl.GenderJdbcRepository.Companion.Column.ID
+import ru.amai.highload.social.repository.impl.GenderJdbcRepository.Companion.Column.NAME
+import ru.amai.highload.social.repository.impl.GenderJdbcRepository.Companion.Table.GENDER
 
 @Repository
-class GenderRepositoryImpl(
+class GenderJdbcRepository(
     private val jdbcOperations: NamedParameterJdbcOperations
 ) : GenderRepository {
 

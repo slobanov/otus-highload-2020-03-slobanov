@@ -39,6 +39,7 @@
     <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
     <kotlin-logging.version>1.7.9</kotlin-logging.version>
     <mockk.version>1.9.3</mockk.version>
+    <h2.version>1.4.200</h2.version>
 
     <!-- sonar -->
     <sonar.organization>slobanov-github</sonar.organization>
@@ -80,10 +81,18 @@
         <artifactId>kotlin-logging</artifactId>
         <version>${kotlin-logging.version}</version>
       </dependency>
+
+      <!-- test -->
       <dependency>
         <groupId>io.mockk</groupId>
         <artifactId>mockk</artifactId>
         <version>${mockk.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>

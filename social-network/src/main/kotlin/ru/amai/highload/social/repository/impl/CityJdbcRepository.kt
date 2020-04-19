@@ -7,12 +7,12 @@ import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.stereotype.Repository
 import ru.amai.highload.social.domain.City
 import ru.amai.highload.social.repository.CityRepository
-import ru.amai.highload.social.repository.impl.CityRepositoryImpl.Companion.Column.ID
-import ru.amai.highload.social.repository.impl.CityRepositoryImpl.Companion.Column.NAME
-import ru.amai.highload.social.repository.impl.CityRepositoryImpl.Companion.Table.CITY
+import ru.amai.highload.social.repository.impl.CityJdbcRepository.Companion.Column.ID
+import ru.amai.highload.social.repository.impl.CityJdbcRepository.Companion.Column.NAME
+import ru.amai.highload.social.repository.impl.CityJdbcRepository.Companion.Table.CITY
 
 @Repository
-class CityRepositoryImpl(
+class CityJdbcRepository(
     private val jdbcOperations: NamedParameterJdbcOperations
 ) : CityRepository {
 
