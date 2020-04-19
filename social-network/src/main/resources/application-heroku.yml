@@ -1,0 +1,8 @@
+social:
+  db:
+    poolsize: 8
+    maxLifeTimeSeconds: 60
+
+spring:
+  liquibase:
+    enabled: false

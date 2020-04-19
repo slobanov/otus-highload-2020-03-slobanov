@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8">
+
+  <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="../static/css/style.css"
+        th:href="@{/css/style.css}">
+
+  <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../static/js/common.js" th:src="@{/js/common.js}"></script>
+  <script src="../static/js/sign-up.js" th:src="@{/js/sign-up.js}"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg sticky" role="navigation">
+    <a class="navbar-brand mr-auto" href="user.html" th:href="@{/}">Social Network</a>
+    <a class="nav btn inactive" href="/logout" th:href="@{/logout}">Log Out</a>
+  </nav>
+</header>
+
+<main class="container">
+  <form id="sign-up" class="col-4 form-signin">
+    <h4 class="form-signin-heading">Sign Up Today</h4>
+    <p>
+      <label for="username" class="sr-only">Username</label>
+      <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+    </p>
+    <hr/>
+    <p>
+      <label for="first-name" class="sr-only">First Name</label>
+      <input type="text" id="first-name" name="first-name" class="form-control" placeholder="First Name" required autofocus>
+    </p>
+    <p>
+      <label for="last-name" class="sr-only">Last Name</label>
+      <input type="text" id="last-name" name="last-name" class="form-control" placeholder="Last Name" required autofocus>
+    </p>
+    <hr>
+    <p>Birth Date</p>
+    <p>
+      <label for="birth-date" class="sr-only">Birth date</label>
+      <input type="date" id="birth-date" name="birth-date" class="form-control" placeholder="Birth Date" required autofocus>
+    </p>
+    <hr/>
+    <p>Gender</p>
+    <p>
+      <label for="gender" class="sr-only">Gender</label>
+      <select class="select" required size="2" name="gander" id="gender">
+      </select>
+    </p>
+    <hr/>
+    <p>
+      <label for="city" class="sr-only">City</label>
+      <input type="text" id="city-input" list="city" name="city" class="form-control" placeholder="City" required autofocus>
+      <datalist id="city"></datalist>
+    </p>
+    <hr/>
+    <p class="interests-block">
+      <label for="interests" class="sr-only">Interests</label>
+      <input type="text" id="interest-input" list="interests" name="interests" class="form-control" placeholder="Interests" autofocus>
+      <datalist id="interests"></datalist>
+      <button class="btn" type="button" onclick="add_interest()"><span class="fui-plus"></span></button>
+    </p>
+    <div id="selected-interests"></div>
+    <hr/>
+    <p>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    </p>
+    <p><input type="hidden" name="remember-me" value="true"/></p>
+    <button class="btn btn-lg btn-block" type="submit">Sign Up</button>
+  </form>
+</main>
+</body>
+
+</html>

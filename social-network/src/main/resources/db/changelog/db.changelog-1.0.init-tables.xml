@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+				xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet author="s.lobanov" id="db.changelog-1.0.init-tables">
+		<createTable tableName="USER">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="LOGIN" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="PASSWORD" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ROLES" type="VARCHAR(1024)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+
+		<createTable tableName="GENDER">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+
+		<createTable tableName="CITY">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+
+		<createTable tableName="INTEREST">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+
+		<createTable tableName="USER_PERSONAL_DETAILS">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="USER_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_USER_DETAILS"
+										 references="USER(ID)"
+										 deleteCascade="true"/>
+			</column>
+			<column name="FIRST_NAME" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="LAST_NAME" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="BIRTH_DATE" type="DATE">
+				<constraints nullable="false"/>
+			</column>
+			<column name="GENDER_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_GENDER"
+										 references="GENDER(ID)"/>
+			</column>
+			<column name="CITY_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_CITY"
+										 references="CITY(ID)"/>
+			</column>
+		</createTable>
+
+		<createTable tableName="USER_TO_INTEREST">
+			<column name="USER_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_USER_INTEREST"
+										 references="USER(ID)"
+										 deleteCascade="true"/>
+			</column>
+			<column name="INTEREST_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_INTEREST"
+										 references="INTEREST(ID)"
+										 deleteCascade="true"/>
+			</column>
+		</createTable>
+		<addPrimaryKey tableName="USER_TO_INTEREST"
+									 columnNames="USER_ID, INTEREST_ID"
+									 constraintName="PK_USER_TO_INTEREST"/>
+	</changeSet>
+</databaseChangeLog>
