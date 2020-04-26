@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+				xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet author="s.lobanov" id="db.changelog-2.0.follower">
+		<createTable tableName="FOLLOWER">
+			<column name="FOLLOWER_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_FOLLOWER_ID"
+										 references="USER(ID)"
+										 deleteCascade="true"/>
+			</column>
+			<column name="FOLLOWED_ID" type="BIGINT">
+				<constraints nullable="false"
+										 foreignKeyName="FK_FOLLOWED_ID"
+										 references="USER(ID)"
+										 deleteCascade="true"/>
+			</column>
+		</createTable>
+		<addPrimaryKey tableName="FOLLOWER"
+									 columnNames="FOLLOWER_ID, FOLLOWED_ID"
+									 constraintName="PK_FOLLOWER"/>
+	</changeSet>
+</databaseChangeLog>

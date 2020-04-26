@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+
+    <appender name="consoleJsonAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider"/>
+            <includeContext>true</includeContext>
+            <shortenedLoggerNameLength>36</shortenedLoggerNameLength>
+            <fieldNames>
+                <timestamp>timestamp</timestamp>
+                <message>message</message>
+                <thread>thread</thread>
+                <logger>logger</logger>
+                <level>level</level>
+                <version>[ignore]</version>
+                <levelValue>[ignore]</levelValue>
+            </fieldNames>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="consoleJsonAppender"/>
+    </root>
+
+</configuration>

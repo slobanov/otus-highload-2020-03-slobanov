@@ -1,0 +1,4 @@
+ID,LOGIN,PASSWORD,ROLES
+1,ivan1111,$2a$10$IXXF/ArqWDCv6Jnms79V.OTke3P.qCf1fVnqfOs/q2iWtyyeuzaz6,USER
+2,vnikulin,$2a$10$IXXF/ArqWDCv6Jnms79V.OTke3P.qCf1fVnqfOs/q2iWtyyeuzaz6,USER
+3,avatar,$2a$10$IXXF/ArqWDCv6Jnms79V.OTke3P.qCf1fVnqfOs/q2iWtyyeuzaz6,'ADMIN,USER'

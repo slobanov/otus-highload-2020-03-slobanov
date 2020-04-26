@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+				xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+														http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet author="s.lobanov" id="db.changelog-test-data">
+		<loadData tableName="USER" file="db/changelog/data/test-user.csv" quotchar="'"/>
+		<loadData tableName="GENDER" file="db/changelog/data/test-gender.csv"/>
+		<loadData tableName="CITY" file="db/changelog/data/test-city.csv"/>
+		<loadData tableName="USER_PERSONAL_DETAILS" file="db/changelog/data/test-user_personal_details.csv"/>
+		<loadData tableName="INTEREST" file="db/changelog/data/test-interest.csv"/>
+		<loadData tableName="USER_TO_INTEREST" file="db/changelog/data/test-user_to_interest.csv"/>
+	</changeSet>
+</databaseChangeLog>

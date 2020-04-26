@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8">
+
+  <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="../static/css/style.css"
+        th:href="@{/css/style.css}">
+
+  <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../static/js/common.js" th:src="@{/js/common.js}"></script>
+  <script src="../static/js/users.js" th:src="@{/js/users.js}"></script>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg sticky" role="navigation">
+    <a class="navbar-brand" href="user.html" th:href="@{/}">Social Network</a>
+    <ul class="nav navbar-nav mr-auto btn-group">
+      <li><a href="users.html" th:href="@{/users}">Users</a></li>
+    </ul>
+    <a class="nav btn inactive" href="logout.html" th:href="@{/logout}">Log Out</a>
+  </nav>
+</header>
+
+<body>
+<main class="container">
+  <table>
+    <thead>
+    <tr>
+      <th>Login</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody id="users">
+    </tbody>
+  </table>
+</main>
+
+<section id="navigation" class="container">
+  <div class="row">
+    <div class="col-2">
+      <button id="prev" class="btn btn-lg btn-block" type="button" onclick="previous()">Previous</button>
+    </div>
+    <div class="col-2">
+      <button id="next" class="btn btn-lg btn-block" type="button" onclick="next()">Next</button>
+    </div>
+  </div>
+</section>
+
+</body>
+
+</html>

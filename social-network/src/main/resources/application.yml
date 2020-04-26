@@ -1,0 +1,29 @@
+server:
+  port: ${port}
+  servlet:
+    context-path: /${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+  metrics:
+    distribution:
+      percentiles:
+        http:
+          server:
+            requests: 0.50,0.75,0.99
+
+spring:
+  main:
+    banner-mode: off
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  thymeleaf:
+    cache: "false"
+    prefix: "classpath:/templates/"
+  datasource:
+    url: ${social.db.url}
+    username: ${social.db.username}
+    password: ${social.db.password}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8">
+
+  <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css"/>
+  <link rel="stylesheet" type="text/css"
+        href="../static/css/style.css"
+        th:href="@{/css/style.css}">
+
+  <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../static/js/common.js" th:src="@{/js/common.js}"></script>
+  <script src="../static/js/user.js" th:src="@{/js/user.js}"></script>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg sticky" role="navigation">
+    <a class="navbar-brand" href="user.html" th:href="@{/}">Social Network</a>
+    <ul class="nav navbar-nav mr-auto btn-group">
+      <li><a href="users.html" th:href="@{/users}">Users</a></li>
+    </ul>
+    <a class="nav btn inactive" href="logout.html" th:href="@{/logout}">Log Out</a>
+  </nav>
+</header>
+
+<body>
+<main class="container">
+  <div class="row">
+    <div class="col-6">
+      <table>
+        <tbody id="user">
+        <tr>
+          <td>First Name</td>
+          <td id="first-name"></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td id="last-name"></td>
+        </tr>
+        <tr>
+          <td>Age</td>
+          <td id="age"></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td id="gender"></td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td id="city"></td>
+        </tr>
+        <tr>
+          <td>Interests</td>
+          <td id="interests"></td>
+        </tr>
+        <tr>
+          <td>Follows</td>
+          <td id="follows"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2">
+      <button id="follow"
+              class="btn btn-lg btn-block"
+              type="button"
+              onclick="follow()"
+              style="display: none;"
+      >Follow</button>
+    </div>
+  </div>
+</main>
+</body>
+
+</html>
