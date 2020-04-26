@@ -20,7 +20,7 @@ class UserJdbcRepository(
 
     override fun findByLogin(login: String): User? =
         jdbcOperations.query(
-            userSQL,
+            userLoginSql,
             mapOf(LOGIN.name to login),
             userExtractor
         ).asSingle()
@@ -43,6 +43,23 @@ class UserJdbcRepository(
         return user.copy(id = key.toLong())
     }
 
+    override fun findAll(limit: Int, offset: Long): List<User> =
+        jdbcOperations.query("""
+            $userSql
+            LIMIT $offset, $limit
+        """.trimIndent(),
+            userExtractor
+        )
+
+    override fun findByIds(userIds: List<Long>): List<User> =
+        jdbcOperations.query("""
+            $userSql
+            WHERE $USER.$ID in (:$ID)
+        """.trimIndent(),
+            mapOf(ID.name to userIds),
+            userExtractor
+        )
+
     private companion object {
         enum class Table {
             USER
@@ -55,12 +72,16 @@ class UserJdbcRepository(
             ROLES
         }
 
-        val userSQL = """
+        val userSql = """
             SELECT $USER.$ID,
                    $USER.$LOGIN,
                    $USER.$PASSWORD,
                    $USER.$ROLES
               FROM $USER
+        """.trimIndent()
+
+        val userLoginSql = """
+            $userSql
              WHERE $USER.$LOGIN = :$LOGIN
         """.trimIndent()
 

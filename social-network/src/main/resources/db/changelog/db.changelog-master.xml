@@ -6,4 +6,6 @@
                             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
   <include file="db/changelog/db.changelog-1.0.init-tables.xml"/>
   <include file="db/changelog/db.changelog-1.1.dummy-data.xml"/>
+  <include file="db/changelog/db.changelog-2.0.follower.xml"/>
+  <include file="db/changelog/db.changelog-2.1.follower-dummy-data.xml"/>
 </databaseChangeLog>

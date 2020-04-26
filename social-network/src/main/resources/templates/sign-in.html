@@ -24,8 +24,11 @@
 
 <header>
   <nav class="navbar navbar-expand-lg sticky" role="navigation">
-    <a class="navbar-brand mr-auto" href="user.html" th:href="@{/}">Social Network</a>
-    <a class="nav btn inactive" href="/logout" th:href="@{/logout}">Log Out</a>
+    <a class="navbar-brand" href="user.html" th:href="@{/}">Social Network</a>
+    <ul class="nav navbar-nav mr-auto btn-group">
+      <li><a href="users.html" th:href="@{/users}">Users</a></li>
+    </ul>
+    <a class="nav btn inactive" href="logout.html" th:href="@{/logout}">Log Out</a>
   </nav>
 </header>
 
@@ -42,7 +45,7 @@
     </p>
     <p><input type="hidden" name="remember-me" value="true"/></p>
     <button class="btn btn-lg btn-block" type="submit">Sign In</button>
-    <a class="btn btn-lg btn-block" href="/sign-up.html" th:href="@{/sign-up}">Sign Up</a>
+    <a class="btn btn-lg btn-block" href="sign-up.html" th:href="@{/sign-up}">Sign Up</a>
   </form>
 </main>
 </body>

@@ -17,7 +17,7 @@ class GenderResource(
     private val genderService: GenderService
 ) {
 
-    @GetMapping("/")
+    @GetMapping
     fun getAllGenders(): ResponseEntity<List<String>> {
         val genders = genderService.listAllGenders()
         return if (genders.isNotEmpty()) {

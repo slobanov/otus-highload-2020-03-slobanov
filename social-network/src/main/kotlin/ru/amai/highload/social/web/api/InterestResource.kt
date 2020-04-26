@@ -15,16 +15,16 @@ import ru.amai.highload.social.web.LOGIN_PARAM
 import ru.amai.highload.social.web.USER
 
 @RestController
-@RequestMapping("/$API/$INTEREST/")
+@RequestMapping("/$API/$INTEREST")
 class InterestResource(
     private val interestService: InterestService
 ) {
 
-    @GetMapping("/")
+    @GetMapping
     fun getInterests(): ResponseEntity<List<String>> =
         interestService.allInterests().toResponseEntity()
 
-    @GetMapping("$USER/{$LOGIN_PARAM}")
+    @GetMapping("/$USER/{$LOGIN_PARAM}")
     fun getInterestsForUser(@PathVariable login: String): ResponseEntity<List<String>> =
         interestService.interestsForUser(login).toResponseEntity()
 

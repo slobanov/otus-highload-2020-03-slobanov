@@ -29,11 +29,14 @@ class UserPersonalDetailsJdbcRepository(
 ) : UserPersonalDetailsRepository {
 
     override fun findByUserId(userId: Long): UserPersonalDetails? =
+        findAllByUserIds(listOf(userId)).asSingle()
+
+    override fun findAllByUserIds(userIds: List<Long>): List<UserPersonalDetails> =
         jdbcOperations.query(
             userPersonalDetailsSQL,
-            mapOf(USER_ID.name to userId),
+            mapOf(USER_ID.name to userIds),
             userPersonalDetailsExtractor
-        ).asSingle()
+        )
 
     override fun save(
         userPersonalDetails: UserPersonalDetails
@@ -94,7 +97,7 @@ class UserPersonalDetailsJdbcRepository(
                 ON $USER_PERSONAL_DETAILS.$GENDER_ID = $GENDER.$ID
               JOIN $CITY 
                 ON $USER_PERSONAL_DETAILS.$CITY_ID = $CITY.$ID
-             WHERE $USER_PERSONAL_DETAILS.$USER_ID = :$USER_ID 
+             WHERE $USER_PERSONAL_DETAILS.$USER_ID IN (:$USER_ID)
         """.trimIndent()
 
         val userPersonalDetailsExtractor = RowMapper { resultSet, _ -> with(resultSet) {

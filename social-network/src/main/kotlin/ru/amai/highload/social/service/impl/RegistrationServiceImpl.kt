@@ -18,7 +18,7 @@ class RegistrationServiceImpl(
     private val userPersonalDetailsService: UserPersonalDetailsService,
     private val genderService: GenderService,
     private val cityService: CityService,
-    val interestService: InterestService
+    private val interestService: InterestService
 ) : RegistrationService {
 
     @Transactional

@@ -17,7 +17,7 @@ class CityResource(
     private val cityService: CityService
 ) {
 
-    @GetMapping("/")
+    @GetMapping
     fun getAllCities(): ResponseEntity<List<String>> {
         val cities = cityService.listAllCities()
         return if (cities.isNotEmpty()) {

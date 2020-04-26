@@ -53,7 +53,7 @@ class InterestJdbcRepository(
     private fun findByNames(names: List<String>): List<Interest> =
         jdbcOperations.query("""
             $interestsSQL
-            WHERE $INTEREST.$NAME in (:$NAME)
+            WHERE $INTEREST.$NAME IN (:$NAME)
         """.trimIndent(),
             mapOf(NAME.name to names),
             interestExtractor
