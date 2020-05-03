@@ -9,6 +9,7 @@
 
 Contents:
 * [social-network](social-network)
+* [yandex-load-test](yandex-load-test)
 
 - - - -
 
