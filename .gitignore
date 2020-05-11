@@ -2,6 +2,7 @@ HELP.md
 target/
 /db-data
 .ipynb_checkpoints/
+jmeter.log
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
