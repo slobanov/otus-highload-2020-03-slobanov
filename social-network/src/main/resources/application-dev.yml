@@ -3,3 +3,5 @@ social:
     url: jdbc:mysql://localhost:3306/social_network
     username: social-network-admin
     password: password
+  user-details:
+    max-limit: 5000

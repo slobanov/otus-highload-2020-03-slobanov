@@ -27,7 +27,7 @@ internal class UserJdbcRepositoryTest {
 
         val user = userRepository.findByLogin(login)
 
-        assertThat(user).isNotNull()
+        assertThat(user).isNotNull
         assertThat(user!!.id).`as`("user id").isEqualTo(1L)
         assertThat(user.login).`as`("user login").isEqualTo(login)
         assertThat(user.password).`as`("user password").isEqualTo("password123")

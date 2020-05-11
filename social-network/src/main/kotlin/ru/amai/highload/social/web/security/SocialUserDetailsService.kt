@@ -12,6 +12,7 @@ class SocialUserDetailsService(
     private val userService: UserService
 ) : UserDetailsService {
 
+    @Suppress("SpreadOperator")
     override fun loadUserByUsername(login: String): UserDetails =
         userService.withUser(login) {
             User.builder()

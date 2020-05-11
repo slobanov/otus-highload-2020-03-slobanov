@@ -30,7 +30,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- plugin version -->
-    <detekt.version>1.7.0</detekt.version>
+    <detekt.version>1.8.0</detekt.version>
     <dockerfile.maven.plugin.verion>0.33.0</dockerfile.maven.plugin.verion>
     <jacoco.version>0.8.5</jacoco.version>
 
@@ -40,6 +40,7 @@
     <kotlin-logging.version>1.7.9</kotlin-logging.version>
     <mockk.version>1.9.3</mockk.version>
     <h2.version>1.4.200</h2.version>
+    <kotest.version>4.0.0</kotest.version>
 
     <!-- sonar -->
     <sonar.organization>slobanov-github</sonar.organization>
@@ -93,6 +94,24 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${h2.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.kotest</groupId>
+        <artifactId>kotest-runner-junit5-jvm</artifactId>
+        <version>${kotest.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.kotest</groupId>
+        <artifactId>kotest-assertions-core-jvm</artifactId>
+        <version>${kotest.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.kotest</groupId>
+        <artifactId>kotest-property-jvm</artifactId>
+        <version>${kotest.version}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>

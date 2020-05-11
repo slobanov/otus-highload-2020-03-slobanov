@@ -8,4 +8,6 @@
   <include file="db/changelog/db.changelog-1.1.dummy-data.xml"/>
   <include file="db/changelog/db.changelog-2.0.follower.xml"/>
   <include file="db/changelog/db.changelog-2.1.follower-dummy-data.xml"/>
+  <include file="db/changelog/db.changelog-3.1.force-innodb.xml"/>
+  <include file="db/changelog/db.changelog-3.2.create-search-index.xml"/>
 </databaseChangeLog>

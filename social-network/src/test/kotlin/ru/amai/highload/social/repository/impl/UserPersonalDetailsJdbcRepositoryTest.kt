@@ -1,13 +1,19 @@
 package ru.amai.highload.social.repository.impl
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments.of
+import org.junit.jupiter.params.provider.MethodSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
+import ru.amai.highload.social.UserPersonalDetailsData.QA
+import ru.amai.highload.social.UserPersonalDetailsData.Test
 import ru.amai.highload.social.domain.City
 import ru.amai.highload.social.domain.Gender
 import ru.amai.highload.social.domain.UserPersonalDetails
@@ -90,4 +96,57 @@ internal class UserPersonalDetailsJdbcRepositoryTest {
         checkPersonalDetails(savedUserPersonalDetails)
         checkPersonalDetails(retrievedUserPersonalDetails!!)
     }
+
+    @ParameterizedTest(name = "{displayName} [limit = {0} offset = {1}]")
+    @DisplayName("all users ordered by id")
+    @MethodSource(
+        "ru.amai.highload.social.repository.impl.UserPersonalDetailsJdbcRepositoryTestKt#usersProvider"
+    )
+    fun findAllOrderById(
+        limit: Int,
+        offset: Long,
+        expectedUsers: List<UserPersonalDetails>
+    ) {
+        val users = userPersonalDetailsRepository.findAllOrderById(
+            limit = limit,
+            offset = offset
+        )
+        assertThat(users).isEqualTo(expectedUsers)
+    }
+
+    @ParameterizedTest(name = """
+        {displayName} [limit = {0} offset = {1}, 
+firstName starts with {2}, lastName starts with {3}]
+    """)
+    @DisplayName("users ordered by id, filtered by firstName and lastName")
+    @MethodSource(
+        "ru.amai.highload.social.repository.impl.UserPersonalDetailsJdbcRepositoryTestKt#usersWithNameProvider"
+    )
+    fun findByFirstNamePrefixAndLastNamePrefixOrderById(
+        limit: Int,
+        offset: Long,
+        firstNamePrefix: String,
+        lastNamePrefix: String,
+        expectedUsers: List<UserPersonalDetails>
+    ) {
+        val users = userPersonalDetailsRepository.findByFirstNamePrefixAndLastNamePrefixOrderById(
+            limit = limit,
+            offset = offset,
+            firstNamePrefix = firstNamePrefix,
+            lastNamePrefix = lastNamePrefix
+        )
+        assertThat(users).isEqualTo(expectedUsers)
+    }
 }
+
+private fun usersProvider() = listOf(
+    of(0, 1, emptyList<UserPersonalDetails>()),
+    of(1, 1, listOf(Test)),
+    of(2, 0, listOf(QA, Test))
+)
+
+private fun usersWithNameProvider() = listOf(
+    of(0, 100, "T", "T", emptyList<UserPersonalDetails>()),
+    of(10, 0, "T", "T", listOf(Test)),
+    of(10, 0, "A", "T", emptyList<UserPersonalDetails>())
+)

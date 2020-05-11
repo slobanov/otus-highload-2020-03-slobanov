@@ -6,6 +6,10 @@ import ru.amai.highload.social.domain.UserPersonalDetailsLight
 interface UserPersonalDetailsService {
 
     fun getUserPersonalDetailsForUser(login: String): UserPersonalDetails?
-    fun getAllUserPersonalDetailsLight(limit: Int, offset: Long): List<UserPersonalDetailsLight>
+    fun searchUserPersonalDetailsLight(
+        limit: Int,
+        offset: Long,
+        searchSpeck: UserPersonalDetailsSearchSpeck
+    ): List<UserPersonalDetailsLight>
     fun setUserPersonalDetails(userPersonalDetails: UserPersonalDetails): UserPersonalDetails
 }

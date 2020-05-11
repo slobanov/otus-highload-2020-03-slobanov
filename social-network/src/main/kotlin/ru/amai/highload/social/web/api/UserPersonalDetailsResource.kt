@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.amai.highload.social.domain.UserPersonalDetailsLight
+import ru.amai.highload.social.service.UserPersonalDetailsSearchSpeck
 import ru.amai.highload.social.service.UserPersonalDetailsService
 import ru.amai.highload.social.web.API
 import ru.amai.highload.social.web.LOGIN_PARAM
@@ -31,13 +32,19 @@ class UserPersonalDetailsResource(
         } ?: noContent().build()
 
     @GetMapping
-    fun getAllUserDetailsLight(
+    fun searchUserDetailsLight(
         @RequestParam(defaultValue = "$DEFAULT_OFFSET") offset: Long,
-        @RequestParam(defaultValue = "$DEFAULT_LIMIT") limit: Int
+        @RequestParam(defaultValue = "$DEFAULT_LIMIT") limit: Int,
+        @RequestParam(defaultValue = "") firstNamePrefix: String,
+        @RequestParam(defaultValue = "") lastNamePrefix: String
     ): ResponseEntity<List<UserPersonalDetailsLight>> {
-        return ok(userPersonalDetailsService.getAllUserPersonalDetailsLight(
+        return ok(userPersonalDetailsService.searchUserPersonalDetailsLight(
             limit = limit,
-            offset = offset
+            offset = offset,
+            searchSpeck = UserPersonalDetailsSearchSpeck(
+                firstNamePrefix = firstNamePrefix,
+                lastNamePrefix = lastNamePrefix
+            )
         ))
     }
 

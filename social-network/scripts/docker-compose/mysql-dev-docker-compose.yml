@@ -4,7 +4,7 @@ services:
     image: mysql:8.0.19
     container_name: mysql
     volumes:
-      #- ./../../db-data:/var/lib/mysql
+      - ./../../db-data:/var/lib/mysql
       - ./init:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=password

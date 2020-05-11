@@ -6,4 +6,4 @@ errorBar = (text) => `
     <div class="col-4 error-bar">${text}</div>
 `;
 
-user_link = (login) => `<a href="${context}/user/${login}">${login}</a>`
+user_link = (login) => `<a href="${context}/user/${login}">${login}</a>`;

@@ -10,7 +10,8 @@
 Contents:
 * [social-network](social-network)
 * [yandex-load-test](yandex-load-test)
-
+* [user-data-generation](user-data-generation)
+* [wrk-search-load](wrk-search-load)
 - - - -
 
 Sergey Lobanov

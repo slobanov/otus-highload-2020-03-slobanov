@@ -6,6 +6,5 @@ interface UserRepository {
 
     fun findByLogin(login: String): User?
     fun save(user: User): User
-    fun findAll(limit: Int, offset: Long): List<User>
     fun findByIds(userIds: List<Long>): List<User>
 }

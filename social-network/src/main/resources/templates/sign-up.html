@@ -26,7 +26,7 @@
   <nav class="navbar navbar-expand-lg sticky" role="navigation">
     <a class="navbar-brand" href="user.html" th:href="@{/}">Social Network</a>
     <ul class="nav navbar-nav mr-auto btn-group">
-      <li><a href="users.html" th:href="@{/users}">Users</a></li>
+      <li><a class="inactive" href="users.html" th:href="@{/users}">Users</a></li>
     </ul>
     <a class="nav btn inactive" href="logout.html" th:href="@{/logout}">Log Out</a>
   </nav>
@@ -64,14 +64,12 @@
     <hr/>
     <p>
       <label for="city" class="sr-only">City</label>
-      <input type="text" id="city-input" list="city" name="city" class="form-control" placeholder="City" required autofocus>
-      <datalist id="city"></datalist>
+      <input type="text" id="city" name="city" class="form-control" placeholder="City" required autofocus>
     </p>
     <hr/>
     <p class="interests-block">
       <label for="interests" class="sr-only">Interests</label>
-      <input type="text" id="interest-input" list="interests" name="interests" class="form-control" placeholder="Interests" autofocus>
-      <datalist id="interests"></datalist>
+      <input type="text" id="interests" name="interests" class="form-control" placeholder="Interests" autofocus>
       <button class="btn" type="button" onclick="add_interest()"><span class="fui-plus"></span></button>
     </p>
     <div id="selected-interests"></div>

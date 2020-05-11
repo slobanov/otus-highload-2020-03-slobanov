@@ -19,8 +19,10 @@ class UserJdbcRepository(
 ) : UserRepository {
 
     override fun findByLogin(login: String): User? =
-        jdbcOperations.query(
-            userLoginSql,
+        jdbcOperations.query("""
+            $userSql
+            WHERE $USER.$LOGIN = :$LOGIN
+        """.trimIndent(),
             mapOf(LOGIN.name to login),
             userExtractor
         ).asSingle()
@@ -42,14 +44,6 @@ class UserJdbcRepository(
 
         return user.copy(id = key.toLong())
     }
-
-    override fun findAll(limit: Int, offset: Long): List<User> =
-        jdbcOperations.query("""
-            $userSql
-            LIMIT $offset, $limit
-        """.trimIndent(),
-            userExtractor
-        )
 
     override fun findByIds(userIds: List<Long>): List<User> =
         jdbcOperations.query("""
@@ -78,11 +72,6 @@ class UserJdbcRepository(
                    $USER.$PASSWORD,
                    $USER.$ROLES
               FROM $USER
-        """.trimIndent()
-
-        val userLoginSql = """
-            $userSql
-             WHERE $USER.$LOGIN = :$LOGIN
         """.trimIndent()
 
         val insertUserSql = """

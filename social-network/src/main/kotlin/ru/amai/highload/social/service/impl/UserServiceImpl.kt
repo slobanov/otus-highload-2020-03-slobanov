@@ -32,11 +32,9 @@ class UserServiceImpl(
         )
     }
 
-    override fun listUsers(limit: Int, offset: Long): List<User> =
-        userRepository.findAll(limit, offset)
-
     override fun listUsersByIds(userIds: List<Long>): List<User> =
-        userRepository.findByIds(userIds)
+        if (userIds.isNotEmpty()) userRepository.findByIds(userIds)
+        else emptyList()
 
     private companion object : KLogging() {
         const val USER_ROLE = "USER"
