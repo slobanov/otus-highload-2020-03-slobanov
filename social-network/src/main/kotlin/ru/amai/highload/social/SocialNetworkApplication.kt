@@ -9,5 +9,5 @@ import org.springframework.boot.runApplication
 class SocialNetworkApplication
 
 fun main() {
-	runApplication<SocialNetworkApplication>()
+    runApplication<SocialNetworkApplication>()
 }

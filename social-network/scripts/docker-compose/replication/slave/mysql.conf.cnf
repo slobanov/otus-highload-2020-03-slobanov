@@ -1,0 +1,7 @@
+[mysqld]
+
+server_id=2
+gtid_mode=ON
+enforce_gtid_consistency=ON
+
+default_authentication_plugin=mysql_native_password
