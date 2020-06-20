@@ -16,6 +16,7 @@ import ru.amai.highload.social.web.INTEREST
 import ru.amai.highload.social.web.LOGIN
 import ru.amai.highload.social.web.SIGN_IN
 import ru.amai.highload.social.web.SIGN_UP
+import ru.amai.highload.social.web.USER
 
 @Configuration
 class SecurityConfiguration(
@@ -34,6 +35,7 @@ class SecurityConfiguration(
             .antMatchers("/$API/$CITY/").permitAll()
             .antMatchers("/$API/$GENDER/").permitAll()
             .antMatchers("/$API/$INTEREST/").permitAll()
+            .antMatchers("/$API/$USER/").permitAll()
             .antMatchers("/css/*").permitAll()
             .antMatchers("/js/*").permitAll()
             .antMatchers("/favicon.ico").permitAll()

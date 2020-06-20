@@ -1,11 +1,8 @@
 package ru.amai.highload.social.web.api
 
-import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.noContent
 import org.springframework.http.ResponseEntity.ok
-import org.springframework.http.ResponseEntity.status
-import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -46,8 +43,4 @@ class FollowedResource(
             currentLogin = principal.name,
             userToFollowLogin = login
         ))
-
-    @ExceptionHandler(Exception::class)
-    fun userAlreadyExists(): ResponseEntity<Nothing> =
-        status(BAD_REQUEST).build()
 }

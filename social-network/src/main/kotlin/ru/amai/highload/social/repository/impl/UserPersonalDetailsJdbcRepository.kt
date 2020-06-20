@@ -29,14 +29,13 @@ class UserPersonalDetailsJdbcRepository(
 ) : UserPersonalDetailsRepository {
 
     override fun findByUserId(userId: Long): UserPersonalDetails? =
-        findAllByUserIds(listOf(userId)).asSingle()
-
-    override fun findAllByUserIds(userIds: List<Long>): List<UserPersonalDetails> =
-        jdbcOperations.query(
-            userPersonalDetailsSQL,
-            mapOf(USER_ID.name to userIds),
+        jdbcOperations.query("""
+            $userPersonalDetailsSQL
+            WHERE $USER_PERSONAL_DETAILS.$USER_ID IN (:$USER_ID)
+        """.trimIndent(),
+            mapOf(USER_ID.name to userId),
             userPersonalDetailsExtractor
-        )
+        ).asSingle()
 
     override fun save(
         userPersonalDetails: UserPersonalDetails
@@ -60,6 +59,40 @@ class UserPersonalDetailsJdbcRepository(
 
         return userPersonalDetails.copy(id = key.toLong())
     }
+
+    override fun findAllOrderById(limit: Int, offset: Long): List<UserPersonalDetails> =
+        jdbcOperations.query("""
+            $userPersonalDetailsSQL
+            ORDER BY $ID DESC
+            LIMIT :OFFSET, :LIMIT
+        """.trimIndent(),
+            mapOf(
+                "LIMIT" to limit,
+                "OFFSET" to offset
+            ),
+            userPersonalDetailsExtractor
+        )
+
+    override fun findByFirstNamePrefixAndLastNamePrefixOrderById(
+        firstNamePrefix: String,
+        lastNamePrefix: String,
+        limit: Int,
+        offset: Long
+    ): List<UserPersonalDetails> = jdbcOperations.query("""
+        $userPersonalDetailsSQL
+        WHERE LAST_NAME LIKE :LAST_NAME_PREFIX
+              AND FIRST_NAME LIKE :FIRST_NAME_PREFIX
+        ORDER BY $ID DESC
+        LIMIT :OFFSET, :LIMIT
+    """.trimIndent(),
+        mapOf(
+            "FIRST_NAME_PREFIX" to "$firstNamePrefix%",
+            "LAST_NAME_PREFIX" to "$lastNamePrefix%",
+            "LIMIT" to limit,
+            "OFFSET" to offset
+        ),
+        userPersonalDetailsExtractor
+    )
 
     private companion object {
 
@@ -97,7 +130,14 @@ class UserPersonalDetailsJdbcRepository(
                 ON $USER_PERSONAL_DETAILS.$GENDER_ID = $GENDER.$ID
               JOIN $CITY 
                 ON $USER_PERSONAL_DETAILS.$CITY_ID = $CITY.$ID
-             WHERE $USER_PERSONAL_DETAILS.$USER_ID IN (:$USER_ID)
+        """.trimIndent()
+
+        val insertUserPersonalDetailsSql = """
+            INSERT INTO $USER_PERSONAL_DETAILS (
+                $USER_ID, $FIRST_NAME, $LAST_NAME, $BIRTH_DATE, $GENDER_ID, $CITY_ID
+            ) VALUES (
+                :$USER_ID, :$FIRST_NAME, :$LAST_NAME, :$BIRTH_DATE, :$GENDER_ID, :$CITY_ID
+            )
         """.trimIndent()
 
         val userPersonalDetailsExtractor = RowMapper { resultSet, _ -> with(resultSet) {
@@ -117,13 +157,5 @@ class UserPersonalDetailsJdbcRepository(
                 )
             )
         } }
-
-        val insertUserPersonalDetailsSql = """
-            INSERT INTO $USER_PERSONAL_DETAILS (
-                $USER_ID, $FIRST_NAME, $LAST_NAME, $BIRTH_DATE, $GENDER_ID, $CITY_ID
-            ) VALUES (
-                :$USER_ID, :$FIRST_NAME, :$LAST_NAME, :$BIRTH_DATE, :$GENDER_ID, :$CITY_ID
-            )
-        """.trimIndent()
     }
 }

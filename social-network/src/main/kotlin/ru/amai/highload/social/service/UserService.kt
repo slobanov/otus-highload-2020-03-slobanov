@@ -17,6 +17,5 @@ interface UserService {
 
     fun userForLogin(login: String): User?
     fun createNewUser(login: String, password: String): User
-    fun listUsers(limit: Int, offset: Long): List<User>
     fun listUsersByIds(userIds: List<Long>): List<User>
 }

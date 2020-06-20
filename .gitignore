@@ -1,6 +1,5 @@
 HELP.md
 target/
-/db-data
 .ipynb_checkpoints/
 jmeter.log
 !.mvn/wrapper/maven-wrapper.jar
@@ -32,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Misc ###
+/user-data-generation/data/
+/user-data-generation/generated_data/
+/wrk-search-load/no_index.csv
+/wrk-search-load/with_index.csv
+/social-network/db-data/

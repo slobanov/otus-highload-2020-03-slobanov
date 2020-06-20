@@ -24,26 +24,53 @@
   <nav class="navbar navbar-expand-lg sticky" role="navigation">
     <a class="navbar-brand" href="user.html" th:href="@{/}">Social Network</a>
     <ul class="nav navbar-nav mr-auto btn-group">
-      <li><a href="users.html" th:href="@{/users}">Users</a></li>
+      <li><a class href="users.html" th:href="@{/users}">Users</a></li>
     </ul>
     <a class="nav btn inactive" href="logout.html" th:href="@{/logout}">Log Out</a>
   </nav>
 </header>
 
 <body>
+
 <main class="container">
-  <table>
-    <thead>
-    <tr>
-      <th>Login</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody id="users">
-    </tbody>
-  </table>
+  <div class="row">
+    <table class="col-8">
+      <thead>
+      <tr>
+        <th>Login</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+      </thead>
+      <tbody id="users">
+      </tbody>
+    </table>
+    <div class="col-md-auto">
+      <form id="search" class="form">
+        <p>
+          <label for="firstName" class="sr-only">FirstNamePrefix</label>
+          <input type="text"
+                 id="firstName"
+                 name="firstName"
+                 class="form-control"
+                 placeholder="First Name Prefix"
+                 required autofocus>
+        </p>
+        <p>
+          <label for="lastName" class="sr-only">LastNamePrefix</label>
+          <input type="text"
+                 id="lastName"
+                 name="lastName"
+                 class="form-control"
+                 placeholder="Last Name Prefix"
+                 required autofocus>
+        </p>
+        <hr/>
+        <button class="btn btn-lg btn-block" type="submit">Search</button>
+        <button class="btn btn-lg btn-block" type="button" onclick="reset_search()">Reset</button>
+      </form>
+    </div>
+  </div>
 </main>
 
 <section id="navigation" class="container">

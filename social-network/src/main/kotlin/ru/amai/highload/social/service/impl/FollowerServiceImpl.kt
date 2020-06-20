@@ -19,14 +19,15 @@ class FollowerServiceImpl(
                 .map(Following::followedId)
         } ?: emptyList()
 
-        return userService.listUsersByIds(followedUserIds.filterNotNull())
+        return userService.listUsersByIds(followedUserIds)
             .map(User::login)
     }
 
     override fun canFollow(currentLogin: String, userToFollowLogin: String): Boolean {
         val tryingToFollowSelf = currentLogin == userToFollowLogin
-        return if (tryingToFollowSelf) false
-        else {
+        return if (tryingToFollowSelf) {
+            false
+        } else {
             userService.withUser(currentLogin) {
                 val followerId = id!!
                 userService.withUser(userToFollowLogin) {

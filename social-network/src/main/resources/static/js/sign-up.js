@@ -1,8 +1,5 @@
 window.onload = () => {
     $.get(`${api}/gender/`).then(fill_gender_options);
-    $.get(`${api}/city/`).then(fill_city_options);
-    $.get(`${api}/interest/`).then(fill_interest_options);
-
     $("form#sign-up").attr("action", "javascript:sign_up()");
 };
 
@@ -12,13 +9,11 @@ fill_list_options = (list_id, options) => {
 };
 
 fill_gender_options = (genders) => fill_list_options("gender", genders);
-fill_city_options = (cities) => fill_list_options("city", cities);
-fill_interest_options = (interests) => fill_list_options("interests", interests);
 
 let interests = new Set();
 
 add_interest = () => {
-    let interest = $("#interest-input").val();
+    let interest = $("#interests").val();
     if (interest && !interests.has(interest)) {
         $("div#selected-interests").append(
             `<button type="button"
@@ -29,7 +24,7 @@ add_interest = () => {
             </button>`
         );
         interests.add(interest);
-        $("#interest-input").val("");
+        $("#interest").val("");
     }
 };
 
@@ -44,8 +39,8 @@ sign_up = () => {
     let last_name = $("#last-name").val();
     let gender = $("#gender").val();
     let birthDate = $("#birth-date").val();
-    let city = $("#city-input").val();
-    let last_interest = $("#interest-input").val();
+    let city = $("#city").val();
+    let last_interest = $("#interests").val();
     interests.add(last_interest);
     let password = $("#password").val();
 
