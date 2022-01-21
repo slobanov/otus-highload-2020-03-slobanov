@@ -40,7 +40,7 @@
     <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
     <kotlin-logging.version>1.7.9</kotlin-logging.version>
     <mockk.version>1.9.3</mockk.version>
-    <h2.version>1.4.200</h2.version>
+    <h2.version>2.1.210</h2.version>
     <kotest.version>4.0.0</kotest.version>
 
     <!-- sonar -->
