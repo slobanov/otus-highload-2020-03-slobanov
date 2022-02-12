@@ -31,9 +31,9 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- plugin version -->
-    <detekt.version>1.8.0</detekt.version>
+    <detekt.version>1.19.0</detekt.version>
     <dockerfile.maven.plugin.verion>0.33.0</dockerfile.maven.plugin.verion>
-    <jacoco.version>0.8.5</jacoco.version>
+    <jacoco.version>0.8.7</jacoco.version>
 
     <!-- dependencies versions -->
     <spring-cloud.version>2021.0.0</spring-cloud.version>
