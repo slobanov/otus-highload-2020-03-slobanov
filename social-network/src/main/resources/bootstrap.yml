@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: social-network
-  profiles:
-    active: dev
-
-port: 8080

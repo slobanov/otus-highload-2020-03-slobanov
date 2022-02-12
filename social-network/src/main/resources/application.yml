@@ -16,6 +16,10 @@ management:
             requests: 0.50,0.75,0.99
 
 spring:
+  profiles:
+    active: dev
+  application:
+    name: social-network
   main:
     banner-mode: off
   liquibase:
@@ -27,3 +31,5 @@ spring:
     url: ${social.db.url}
     username: ${social.db.username}
     password: ${social.db.password}
+
+port: 8080
